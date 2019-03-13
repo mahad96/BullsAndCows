@@ -100,6 +100,7 @@ public class BullsAndCows {
 
     public static void playBullsAndCows(int input){
         Scanner sc = new Scanner(System.in);
+        int bulls = 0;
         int[] secretNumber = generateSecretDigits(input);
         System.out.println("Welcome to the game Bulls and Cows");
         int guess = 1;
@@ -123,7 +124,13 @@ public class BullsAndCows {
                 System.out.println("Bulls:" + getNumOfBulls(secretNumber, extractedArray));
                 System.out.println("Cows: " + getNumOfCows(secretNumber, extractedArray));
             }
-            if(getNumOfBulls(secretNumber, extractedArray) == 4){
+            try{
+                bulls = getNumOfBulls(secretNumber, extractedArray);
+            }
+            catch (Exception e){
+                System.out.println(e);
+            }
+            if(bulls == 4){
                 break;
             }
             guess++;
