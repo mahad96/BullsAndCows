@@ -99,6 +99,8 @@ public class BullsAndCows {
     }
 
     public static void playBullsAndCows(int input){
+        long startTime = System.currentTimeMillis();
+        long endTime;
         Scanner sc = new Scanner(System.in);
         int bulls = 0;
         int[] secretNumber = generateSecretDigits(input);
@@ -110,7 +112,8 @@ public class BullsAndCows {
                 sc.nextLine();
                 String action = sc.nextLine();
                 if (action.equals("y")){
-                    System.out.println("You gave up after "+guess+" tries :(");
+                    endTime = System.currentTimeMillis();
+                    System.out.println("You gave up after "+guess+" tries and spent " + (endTime-startTime)/1000 + " seconds of your precious time");
                     System.exit(0);
                 }
             }
@@ -124,6 +127,7 @@ public class BullsAndCows {
                 System.out.println("Bulls:" + getNumOfBulls(secretNumber, extractedArray));
                 System.out.println("Cows: " + getNumOfCows(secretNumber, extractedArray));
             }
+            //The following try catch block prints the IllegalArgumentException and the program does not exit
             try{
                 bulls = getNumOfBulls(secretNumber, extractedArray);
             }
@@ -135,9 +139,8 @@ public class BullsAndCows {
             }
             guess++;
         }
-        System.out.println("Congratulations!!! You cracked the code in "+guess+" tries.");
-
-
+        endTime = System.currentTimeMillis();
+        System.out.println("Congratulations!!! You cracked the code in "+guess+" tries and in just " + (endTime - startTime)/1000 + " seconds");
     }
 }
 
